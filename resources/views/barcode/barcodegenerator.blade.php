@@ -22,7 +22,7 @@ gf
 @section('content')
 
 
-  <form method="get" action="{{route('barcode.generator')}}" >
+  <form method="post" action="{{route('barcode.generator')}}" >
   {{csrf_field()}}
 
 
@@ -101,8 +101,10 @@ gf
             echo '
             <a id="123" href="data:image/png;base64,' . DNS1D::getBarcodePNG("$barcode_val", "$bcode_type", number_format($width, 2),number_format($height, 2) ) . '" download="'.$barcode_val.'">
             <img  src="data:image/png;base64,' . DNS1D::getBarcodePNG("$barcode_val", "$bcode_type", number_format($width, 2),number_format($height, 2) ) . '" alt="barcode" />
+            
             </a>';
-
+            
+             DNS1D::getBarcodePNGPath("$barcode_val", "$bcode_type",number_format($width, 2),number_format($height, 2),[0,0,0],true);
           @endphp 
           </center>
           </div>

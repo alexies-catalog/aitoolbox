@@ -16,12 +16,21 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('barcode/generator','BarcodegeneratorController@barcode')->name('barcode.generator');
-// Route::get('/barcode',function(){
-//     return view('barcode.index');
-// })->name('barcode.index');
+
+Route::name('barcode.')->prefix('barcode')->group(function () {
+    Route::get('generator','BarcodegeneratorController@barcode')->name('generator');
+    Route::post('generator','BarcodegeneratorController@barcode')->name('generator');
+});
 
 
-Route::get('/codetypes/{id}',function ($id) {
-    return App\Codetype::find($id)->codes;
+
+Route::get('/test', function () {
+    // return view('index');
+    // Storage::disk('local')->put('file2.txt', 'Contents');
+    // $contents = Storage::get('file2.txt');
+    // echo $contents;
+    // $contents = Storage::get('file.jpg');
+    $contents = Storage::get('file.jpg');
+    // echo DNS1D::getBarcodePNGPath("$barcode_val", "$bcode_type",number_format($width, 2),number_format($height, 2),[0,0,0],true);
+
 });
